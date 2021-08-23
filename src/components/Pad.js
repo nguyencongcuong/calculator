@@ -4,79 +4,77 @@ import { operatorString, operatorReset, operatorBack, operatorEqual, result } fr
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 
+import { keyList } from './KeyList'
+
 function Pad() {
 
     const operatorCurrentString = useSelector(state => state.operatorReducer)
-    const operatorResult = useSelector(state => state.resultReducer)
     const dispatch = useDispatch()
 
     // ? Check if the state operater matchs the string "+, -, *, /" at the beginning and the bottom of the tring
-    const isMatch = () => {
-        const regex = new RegExp(/^(\+|\-|\*|\/)|(\+|\-|\*|\/)$/, "g")
+    const isCalAble = () => {
+        const regex = new RegExp(/^(\+|-|\*|\/)|(\+|-|\*|\/)$/, "g")
+        const regex2 = new RegExp(/\./, "g")
         const matchedItems = operatorCurrentString.match(regex)
+        const match2 = operatorCurrentString.match(regex2)
         if (matchedItems === null) {
-            return false
+            return true
         } else {
-            return matchedItems.length !== 0 ? true : false
+            if (matchedItems.length !== 0) {
+                return false
+            } else if (match2.length >= 2) {
+
+            } else {
+                return true
+            }
         }
     }
 
     // ? Match 2 or more +, -, *, /
-    const regex2 = new RegExp(/\D{2,}/, "g")
 
-    const keyList = [
-        "AC",
-        "<",
-        "/",
-        "7",
-        "8",
-        "9",
-        "*",
-        "4",
-        "5",
-        "6",
-        "-",
-        "1",
-        "2",
-        "3",
-        "+",
-        "=",
-        "0",
-        "."
-    ]
+    const isInputError = () => {
+        const regex1 = new RegExp(/(^\.)|(\.{2,})|(\D{2,})/, "g")
+        const regex2 = new RegExp(/\./, "g")
+
+        return  (operatorCurrentString.match(regex1) !== null) || 
+                (operatorCurrentString.match(regex2) !== null && 
+                operatorCurrentString.match(regex2).length >= 2) ? 
+                true : 
+                false
+    }
 
     const handleClick = (element) => {
-        if(element === "AC") {
-
-            dispatch(operatorReset())
-            dispatch(result(""))
-
-        } else if (element === "<") {
-
-            dispatch(operatorBack())
-
-        } else if(element === "=") {
-
-            dispatch(result(eval(operatorCurrentString)))
-            dispatch(operatorEqual(operatorCurrentString))
-
+        if (isInputError() && element !== "AC" && element !== "<") {
+            console.log("Lỗi nhập. Không thể nhập tiếp.")
         } else {
+            if (element === "AC") {
 
-            dispatch(operatorString(element))  
+                dispatch(operatorReset())
+                dispatch(result(""))
 
+            } else if (element === "<") {
+
+                dispatch(operatorBack())
+
+            } else if (element === "=") {
+
+                dispatch(result(eval(operatorCurrentString)))
+                dispatch(operatorEqual(operatorCurrentString))
+
+            } else if (element === "") {
+
+            } else {
+
+                dispatch(operatorString(element))
+
+            }
         }
+        
     }
 
 
-    
-
     useEffect(() => {
-        if (!isMatch()) {
-            return dispatch(result(eval(operatorCurrentString)))
-        }
-        if (operatorCurrentString.match(regex2) !== null) {
-            dispatch(operatorReset())
-        }
+        isCalAble() && !isInputError() && dispatch(result(eval(operatorCurrentString)))
     }, [operatorCurrentString])
 
     const PadItems = () => {
@@ -101,7 +99,7 @@ function Pad() {
     }
 
     return (
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-4 gap-1">
             { PadItems() }
         </div>
     )

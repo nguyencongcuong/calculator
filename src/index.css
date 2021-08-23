@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body { @apply bg-gray-100 p-8 }
+body { @apply bg-gray-100 h-screen }
+#root { @apply h-screen flex flex-col justify-center items-center }
 #key-AC { @apply col-span-2 }
-#key-equal { @apply row-span-2 }
-#key-decimal { @apply col-span-2 }
+#key-0 { @apply col-span-2 }
