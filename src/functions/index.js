@@ -1,7 +1,7 @@
 export const isInputError = (operatorStr) => {
     const regex1 = new RegExp(/(\D{2,})/, "g")
     const regex2 = new RegExp(/(^\.)|(\.{2,})|\.[0-9]+\./, "g") // Match errors relating to "."
-    const regex3 = new RegExp(/(0{2,})|(0)([0-9])/, "g") // Match errors relating to "0"
+    const regex3 = new RegExp(/^(0)[0-9])/, "g") // Match errors relating to "0"
 
     if (operatorStr === "") {
         return false
