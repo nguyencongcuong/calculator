@@ -8,7 +8,7 @@ function Operator() {
     return (
         <span
             id="display"
-            style={{ color: "#A32D38" }}
+            style={{ color: "#9bc8ca" }}
             className="text-lg h-10">
             {operator}
         </span>
