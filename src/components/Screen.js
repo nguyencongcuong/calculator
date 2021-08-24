@@ -7,7 +7,7 @@ function Operator() {
 
     return (
         <span
-            style={{ color: `${inputStatus ? "green" : "red" }` }} 
+            style={{ color: `${inputStatus ? "#6AACAF" : "#A32D38" }` }}
             className="text-lg h-10">
             {operator}
         </span>
@@ -17,7 +17,7 @@ function Operator() {
 function Result() {
     const result = useSelector(state => state.result)
     return (
-        <span className="text-4xl h-16">{result}</span>
+        <span className="text-4xl font-bold text-gray-800 h-16">{result}</span>
     )
 }
 

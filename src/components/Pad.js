@@ -60,7 +60,7 @@ function Pad() {
                     e === "<" ? "key-back" :
                     `key-${e}`
                 }
-                style={{ background: `${e === "AC" && "#d17354"}` }}
+                style={{ background: `${e === "<" && (inputStatus ? "#9bc8ca" : "#6aacaf")}` }}
                 symbol={e} 
                 onClick={() => handleClick(e)}
                 />
