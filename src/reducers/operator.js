@@ -2,7 +2,7 @@
  ** OPERATOR REDUCER
  ** Manage the state of operator that show on the screen
  */
-export const operatorReducer = (state = " ", action) => {
+export const operatorReducer = (state = "", action) => {
 
     switch(action.type) {
         case "operatorString":

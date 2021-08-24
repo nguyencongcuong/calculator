@@ -30,3 +30,17 @@ export const result = (data) => {
         data,
     }
 }
+
+export const isInputAble = (operator) => {
+    return {
+        type: "isInputAble",
+        operator,
+    }
+}
+
+export const isCalAble = (operator) => {
+    return {
+        type: "isCalAble",
+        operator,
+    }
+}

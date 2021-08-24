@@ -2,14 +2,20 @@ import React from 'react'
 import { useSelector } from "react-redux"
 
 function Operator() {
-    const operator = useSelector(state => state.operatorReducer)
+    const operator = useSelector(state => state.operator)
+    const inputStatus = useSelector(state => state.isInputAble)
+
     return (
-        <span className="text-lg h-10">{operator}</span>
+        <span
+            style={{ color: `${inputStatus ? "green" : "red" }` }} 
+            className="text-lg h-10">
+            {operator}
+        </span>
     )
 }
 
 function Result() {
-    const result = useSelector(state => state.resultReducer)
+    const result = useSelector(state => state.result)
     return (
         <span className="text-4xl h-16">{result}</span>
     )
