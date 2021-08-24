@@ -1,13 +1,3 @@
-// export const isInputError = (operatorStr) => {
-//     const regex1 = new RegExp(/(\D{2,})/, "g")
-
-//     if (operatorStr.match(regex1) !== null) {
-//         return true
-//     } else {
-//         return false
-//     }
-// }
-
 // ? Check if the state operater matchs the string "+, -, *, /" at the beginning and the bottom of the tring
 export const isCalAble = (operatorStr) => {
     const regex1 = new RegExp(/^(\+|-|\*|\/)|(\+|-|\*|\/)$/, "g")

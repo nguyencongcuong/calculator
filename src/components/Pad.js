@@ -1,6 +1,6 @@
 import React from 'react'
 import PadItem from './PadItem'
-import { operator_1, operatorString, operatorReset, operatorBack, operatorEqual, result } from '../actions'
+import { result, operatorAction } from '../actions'
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { keyList } from './KeyList'
@@ -9,76 +9,15 @@ import { isCalAble } from "../actions"
 
 function Pad() {
 
-    let operatorCurrentString = useSelector(state => state.operator)
-    
+    let operatorStr = useSelector(state => state.operator)
     let calStatus = useSelector(state => state.isCalAble)
 
     const dispatch = useDispatch()
 
-    const handleClick = (element) => {
-
-        // two decimal "." cannot be accepted
-        if (operatorCurrentString.match(/\./, "g")) {
-            if (element === ".") {
-                const regex1 = new RegExp(/(^\.)|[0-9]\.\.|([0-9]\.[0-9]\.)/, "g")
-                if (operatorCurrentString.concat(".").match(regex1) !== null) {
-                    return
-                }
-            }
-        }
- 
-        // two numbers zero cannot be accepted
-        if (operatorCurrentString.match(/^0/, "g")) {
-            if (element === "0") {
-                const regex2 = new RegExp(/^00/, "g")
-                if (operatorCurrentString.concat("0").match(regex2) !== null) {
-                    return
-                }
-            }
-        }
-
-        // two operater next to each other,
-        if (operatorCurrentString.match(/\+|\-|\*|\//, "g")) {
-            
-            //  excluding *-, /-
-            if (element === "+" || element === "-" || element === "*" || element === "/") {
-                const regex3 = new RegExp(/(\+(\+|\-|\*|\/))|(\-(\-|\+|\*|\/))|(\*(\+|\*|\/))|(\/(\+|\*|\/))/, "")
-                if (operatorCurrentString.concat(element).match(regex3) !== null) {
-                   
-                    dispatch(operator_1(element))
-
-                }
-            }
-        }
-
-
-        switch(element) {
-            case "AC":
-                dispatch(operatorReset())
-                dispatch(result(""))
-                break
-            case "<":
-                dispatch(operatorBack())
-                break
-            case "=":
-                calStatus
-                && dispatch(operatorEqual(operatorCurrentString)) 
-                && dispatch(result(eval(operatorCurrentString)))
-                break
-            case ".":
-                dispatch(operatorString(element))
-                break
-            default:
-                dispatch(operatorString(element))
-                break
-        }
-
-    }
-
-
     useEffect(() => {
-        dispatch(isCalAble(operatorCurrentString))
-    }, [operatorCurrentString])
+        console.log(operatorStr)
+        dispatch(isCalAble(operatorStr))
+    }, [operatorStr])
 
     const PadItems = () => {
         return keyList.map(e => 
@@ -107,7 +46,7 @@ function Pad() {
                 }
                 style={{ background: "#9bc8ca" }}
                 symbol={e} 
-                onClick={() => handleClick(e)}
+                onClick={() => e === "=" ? (calStatus && dispatch(operatorAction(e))) : dispatch(operatorAction(e) )}
                 />
             )
     }

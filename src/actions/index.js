@@ -1,32 +1,7 @@
-export const operatorString = (keyName) => {
+export const operatorAction = (keyName) => {
     return {
-        type: "operatorString",
-        keyName
-    }
-}
-
-export const operatorReset = () => {
-    return {
-        type: "operatorReset"
-    }
-}
-
-export const operatorBack = () => {
-    return {
-        type: "operatorBack"
-    }
-}
-
-export const operator_1 = () => {
-    return {
-        type: "operator_1"
-    }
-}
-
-export const operatorEqual = (operatorString) => {
-    return {
-        type: "operatorEqual",
-        operatorString,
+        type: "operatorAction",
+        keyName,
     }
 }
 
