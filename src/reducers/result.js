@@ -1,6 +1,6 @@
 export const resultReducer = (state = "", action) => {
     switch(action.type) {
-        case "result":
+        case "resultAction":
             return action.data !== undefined && action.data
         default: 
             return state

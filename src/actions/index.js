@@ -5,9 +5,9 @@ export const operatorAction = (keyName) => {
     }
 }
 
-export const result = (data) => {
+export const resultAction = (data) => {
     return {
-        type: "result",
+        type: "resultAction",
         data,
     }
 }

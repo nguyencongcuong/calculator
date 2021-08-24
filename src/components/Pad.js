@@ -1,6 +1,6 @@
 import React from 'react'
 import PadItem from './PadItem'
-import { result, operatorAction } from '../actions'
+import { resultAction, operatorAction } from '../actions'
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { keyList } from './KeyList'
@@ -9,9 +9,8 @@ import { isCalAble } from "../actions"
 
 function Pad() {
 
-    let operatorStr = useSelector(state => state.operator)
-    let calStatus = useSelector(state => state.isCalAble)
-
+    const operatorStr = useSelector(state => state.operator)
+    const calStatus = useSelector(state => state.isCalAble)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -46,7 +45,14 @@ function Pad() {
                 }
                 style={{ background: "#9bc8ca" }}
                 symbol={e} 
-                onClick={() => e === "=" ? (calStatus && dispatch(operatorAction(e))) : dispatch(operatorAction(e) )}
+                onClick={() => e === "=" ? 
+                    (
+                        calStatus && 
+                        dispatch(operatorAction(e)) && 
+                        dispatch(resultAction(eval(operatorStr)))
+                    ) : 
+                    dispatch(operatorAction(e))
+                }
                 />
             )
     }
