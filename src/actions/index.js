@@ -17,6 +17,12 @@ export const operatorBack = () => {
     }
 }
 
+export const operator_1 = () => {
+    return {
+        type: "operator_1"
+    }
+}
+
 export const operatorEqual = (operatorString) => {
     return {
         type: "operatorEqual",
@@ -28,13 +34,6 @@ export const result = (data) => {
     return {
         type: "result",
         data,
-    }
-}
-
-export const isInputAble = (operator) => {
-    return {
-        type: "isInputAble",
-        operator,
     }
 }
 

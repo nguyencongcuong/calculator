@@ -3,11 +3,12 @@ import { useSelector } from "react-redux"
 
 function Operator() {
     const operator = useSelector(state => state.operator)
-    const inputStatus = useSelector(state => state.isInputAble)
+
 
     return (
         <span
-            style={{ color: `${inputStatus ? "#6AACAF" : "#A32D38" }` }}
+            id="display"
+            style={{ color: "#A32D38" }}
             className="text-lg h-10">
             {operator}
         </span>

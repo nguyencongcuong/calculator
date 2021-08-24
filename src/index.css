@@ -4,5 +4,5 @@
 
 body { @apply bg-cyan-100 h-screen }
 #root { @apply h-screen flex flex-col justify-center items-center }
-#key-AC { @apply bg-cyan-900 col-span-2 }
-#key-0 { @apply col-span-2 }
+#clear { @apply bg-cyan-900 col-span-2 }
+#zero { @apply col-span-2 }

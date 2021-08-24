@@ -2,13 +2,16 @@
  ** OPERATOR REDUCER
  ** Manage the state of operator that show on the screen
  */
-export const operatorReducer = (state = "", action) => {
+export const operatorReducer = (state = "0", action) => {
 
     switch(action.type) {
+        case "operator_1":
+            let newStr = state.split("").slice(0, state.length - 1).join("")
+            return newStr
         case "operatorString":
-            return state.concat(action.keyName)
+            return (state === "0" && action.keyName !== ".") ? action.keyName : state.concat(action.keyName)
         case "operatorReset":
-            return ""
+            return "0"
         case "operatorBack":
             let x = state.split("")
             x.pop()
