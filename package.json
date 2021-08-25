@@ -1,7 +1,7 @@
 {
   "homepage": "https://nguyencongcuong.github.io/calculator",
   "name": "calculator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.2.0",
