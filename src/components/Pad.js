@@ -1,11 +1,10 @@
-import React from 'react'
-import PadItem from './PadItem'
-import { resultAction, operatorAction } from '../actions'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { resultAction, operatorAction, isCalAble } from '../actions'
+
+import PadItem from './PadItem'
 import { keyList } from './KeyList'
 
-import { isCalAble } from "../actions"
 
 function Pad() {
 

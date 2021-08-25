@@ -16,3 +16,17 @@ export const isCalAble = (operatorStr) => {
         }
     }
 }
+
+export function deleteLastChar(string) {
+    let strArr = string.split("")
+    strArr.pop()
+    return strArr.join("")
+}
+
+export function isMatched(string, regex) {
+    if (string.match(regex) !== null) {
+        return true
+    } else {
+        return false
+    }
+}
