@@ -6,6 +6,10 @@ import { deleteLastChar, isMatched } from "../functions"
  */
 export const operatorReducer = (state = "0", action) => {
 
+    const oldState = state
+    const newState = state.concat(action.keyName)
+    const newerState = deleteLastChar(state).concat(action.keyName)
+
     switch(action.type) {
         case "operatorAction":
             switch(action.keyName) {
@@ -17,29 +21,15 @@ export const operatorReducer = (state = "0", action) => {
                 case "-":
                 case "*":
                 case "/":
-
                     const regexOperator1 = new RegExp(/(\*|\/)-(\+|-|\*|\/)/, "g") // Match: 6*-+, 6*--
                     const regexOperator2 = new RegExp(/(\+(\+|-|\*|\/))|(-((-)|(\+)|(\*)|(\/)))|(\*(\+|\*|\/))|(\/(\+|\*|\/))/, "g")
-                    
-                    const oldState = state
-                    const newState = state.concat(action.keyName)
-                    const newerState = deleteLastChar(state).concat(action.keyName)
-
                     return isMatched(newState, regexOperator1) ? oldState :
                     isMatched(newState, regexOperator2) ? newerState : newState
-
                 case ".":
-                    const regexDecimal = new RegExp(/(^\.)|[0-9]\.\.|([0-9]\.[0-9]\.)/, "g")
-                    const regexDecimalTest = state.concat(".").match(regexDecimal)
-                    return  regexDecimalTest !== null ? state : 
-                            state === "0" ? action.keyName :
-                            state.concat(action.keyName)
+                    const regexDecial = new RegExp(/(\+|-|\*|\/)\.|\.{2}/, "g")
+                    return  isMatched(newState, regexDecial) ? oldState : newState
                 case "0":
-                    if (state === "0") {
-                        return state
-                    } else {
-                        return state.concat(action.keyName)
-                    }
+                    return oldState === "0" ? oldState : newState
                 case "1":
                 case "2":
                 case "3":
@@ -49,7 +39,7 @@ export const operatorReducer = (state = "0", action) => {
                 case "7":
                 case "8":
                 case "9":
-                    return state === "0" ? action.keyName : state.concat(action.keyName)
+                    return oldState === "0" ? action.keyName : newState
                 case "=":
                     return eval(state).toString()
                 default:

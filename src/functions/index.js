@@ -24,9 +24,9 @@ export function isMatched(string, regex) {
  *? isCalAble(15*) returns false
  */
 export const isCalAble = (operator) => {
-    const regex1 = new RegExp(/^(\+|\*|\/)|(\+|-|\*|\/)$/, "g")
-    const regex2 = new RegExp(/^\./, "g")
-    return (isMatched(operator, regex1) || isMatched(operator, regex2)) ? false : true
+    const regex1 = new RegExp(/^(\+|\*|\/)|(\+|-|\*|\/)$|([0-9]\.$)/, "g")
+    // const regex2 = new RegExp(/^\./, "g")
+    return (isMatched(operator, regex1)) ? false : true
 }
 
 /**
