@@ -13,7 +13,7 @@ function Pad() {
 
     const handleStyle = (e) => {
         return {
-            opacity: (e === "=" && !calStatus) && "0.5"
+            opacity: (e === "=" && !calStatus) ? "0.5" : (e === "AC" || e === "<") && "1"
         }
     }
 

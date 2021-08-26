@@ -4,7 +4,7 @@ function PadItem(props) {
     return (
         <div
             id={props.id}
-            className="bg-cyan-600 text-white cursor-pointer aspect-w-2 aspect-h-1 transition-all duration-500"
+            className="bg-cyan-900 opacity-80 text-white cursor-pointer aspect-w-2 aspect-h-1 transition-all duration-500"
             style={props.style}
             onClick={props.onClick}>
             <div 
