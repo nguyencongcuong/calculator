@@ -5,15 +5,19 @@ import { resultAction, operatorAction, isCalAble } from '../actions'
 import PadItem from './PadItem'
 import { keyList } from './KeyList'
 
-
 function Pad() {
 
     const operatorStr = useSelector(state => state.operator)
     const calStatus = useSelector(state => state.isCalAble)
     const dispatch = useDispatch()
 
+    const handleStyle = (e) => {
+        return {
+            opacity: (e === "=" && !calStatus) && "0.5"
+        }
+    }
+
     useEffect(() => {
-        console.log(operatorStr)
         dispatch(isCalAble(operatorStr))
     }, [operatorStr])
 
@@ -42,7 +46,6 @@ function Pad() {
                     e === "9" ? "nine" :
                     `key-${e}`
                 }
-                style={{ background: "#9bc8ca" }}
                 symbol={e} 
                 onClick={() => e === "=" ? 
                     (
@@ -52,6 +55,7 @@ function Pad() {
                     ) : 
                     dispatch(operatorAction(e))
                 }
+                style={handleStyle(e)}
                 />
             )
     }
