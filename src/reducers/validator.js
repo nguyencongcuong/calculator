@@ -1,8 +1,8 @@
 import { isCalAble } from "../functions"
 
-export const isCalAbleReducer = (state = true, action) => {
+export const validateOperatorReducer = (state = true, action) => {
     switch(action.type) {
-        case "isCalAble":
+        case "VALIDATE_OPERATOR":
             return isCalAble(action.operator) ? true : false
         default:
             return state

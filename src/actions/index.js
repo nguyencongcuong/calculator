@@ -1,20 +1,20 @@
 export const operatorAction = (keyName) => {
     return {
-        type: "operatorAction",
+        type: "CALCULATE",
         keyName,
     }
 }
 
 export const resultAction = (data) => {
     return {
-        type: "resultAction",
+        type: "SET_RESULT",
         payload: data
     }
 }
 
-export const isCalAble = (operator) => {
+export const validateOperator = (operator) => {
     return {
-        type: "isCalAble",
+        type: "VALIDATE_OPERATOR",
         operator,
     }
 }

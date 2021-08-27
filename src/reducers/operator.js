@@ -11,7 +11,7 @@ export const operatorReducer = (state = "0", action) => {
     const newerState = deleteLastChar(state).concat(action.keyName)
 
     switch(action.type) {
-        case "operatorAction":
+        case "CALCULATE":
             switch(action.keyName) {
                 case "AC":
                     return "0"

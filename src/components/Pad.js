@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import { resultAction, operatorAction, isCalAble } from '../actions'
+import { resultAction, operatorAction, validateOperator } from '../actions'
 
 import PadItem from './PadItem'
 import { keyList } from './KeyList'
@@ -8,7 +8,7 @@ import { keyList } from './KeyList'
 function Pad() {
 
     const operatorStr = useSelector(state => state.operator)
-    const calStatus = useSelector(state => state.isCalAble)
+    const calStatus = useSelector(state => state.validation)
     const dispatch = useDispatch()
 
     const handleStyle = (e) => {
@@ -18,7 +18,7 @@ function Pad() {
     }
 
     useEffect(() => {
-        dispatch(isCalAble(operatorStr))
+        dispatch(validateOperator(operatorStr))
     }, [operatorStr])
 
     const PadItems = () => {

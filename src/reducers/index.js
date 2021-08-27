@@ -1,12 +1,12 @@
 import { operatorReducer } from "./operator";
 import { resultReducer } from "./result"
-import { isCalAbleReducer } from "./isCalAble";
+import { validateOperatorReducer } from "./validator";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
     operator: operatorReducer,
     result: resultReducer,
-    isCalAble: isCalAbleReducer
+    validation: validateOperatorReducer
 })
 
 export default allReducers
