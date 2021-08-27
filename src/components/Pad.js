@@ -47,12 +47,8 @@ function Pad() {
                     `key-${e}`
                 }
                 symbol={e} 
-                onClick={() => e === "=" ? 
-                    (
-                        calStatus && 
-                        dispatch(operatorAction(e)) && 
-                        dispatch(resultAction(eval(operatorStr)))
-                    ) : 
+                onClick={() => e === "=" ? (calStatus && dispatch(operatorAction(e)) && dispatch(resultAction(eval(operatorStr)))) : 
+                    e === "AC" ? (dispatch(resultAction("")) && dispatch(operatorAction(e))) :
                     dispatch(operatorAction(e))
                 }
                 style={handleStyle(e)}

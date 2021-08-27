@@ -8,7 +8,7 @@ export const operatorAction = (keyName) => {
 export const resultAction = (data) => {
     return {
         type: "resultAction",
-        data,
+        payload: data
     }
 }
 
