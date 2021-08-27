@@ -26,7 +26,7 @@ export const operatorReducer = (state = "0", action) => {
                     return isMatched(newState, regexOperator1) ? oldState :
                     isMatched(newState, regexOperator2) ? newerState : newState
                 case ".":
-                    const regexDecial = new RegExp(/(\+|-|\*|\/)\.|\.{2}/, "g")
+                    const regexDecial = new RegExp(/(\+|-|\*|\/)\.|\.{2}|(\.[0-9]*\.)/, "g")
                     return  isMatched(newState, regexDecial) ? oldState : newState
                 case "0":
                     const regexZero = new RegExp(/(\/00$)/, "g")
@@ -40,7 +40,9 @@ export const operatorReducer = (state = "0", action) => {
                 case "7":
                 case "8":
                 case "9":
-                    return oldState === "0" ? action.keyName : newState
+                    const regexNum = new RegExp(/(\/0[1-9])/, "g")
+                    return isMatched(newState, regexNum) ? oldState :
+                    oldState === "0" ? action.keyName : newState
                 case "=":
                     return eval(state).toString()
                 default:
